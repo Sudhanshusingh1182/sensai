@@ -80,7 +80,7 @@ const Header = async() => {
                             userPreviewMainIdentifier: "font-semibold",
                         },
                       }}
-                      afterSignOutUrl='/'
+                      afterSignOutUrl='/onboarding'
                     />
                 </SignedIn>
 

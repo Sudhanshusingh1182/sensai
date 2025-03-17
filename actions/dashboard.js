@@ -3,6 +3,7 @@
 import { db } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server"
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { redirect } from "next/navigation";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
@@ -53,6 +54,12 @@ export async function getIndustryInsights() {
     });
 
     if(!user) throw new Error("User not found");
+    
+    //fixed the issue where industry was not present 
+    if(!user.industry) {
+      console.log("User is not onboarded");
+      return redirect("/onboarding");
+    }
 
     if(!user.industryInsight){
          const insights = await generateAIInsights(user.industry);

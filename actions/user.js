@@ -3,6 +3,7 @@
 import { db } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server"
 import { generateAIInsights } from "./dashboard";
+import { redirect } from "next/navigation";
 
 export async function updateUser(data){
       //check if the user is logged in or not
@@ -87,6 +88,13 @@ export async function getUserOnboardingStatus() {
       });
 
       if(!user) throw new Error("User not found");
+
+      //if industry data doesn't exist, user is not onboarded
+    //   if(!user.industry) {
+    //     //  return false;
+    //      redirect("/onboarding");
+         
+    //   }
 
       try {
         //fetch the user

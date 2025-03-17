@@ -86,7 +86,6 @@ const Header = async() => {
 
             </div>
         </nav>
-
         
     </header>
   )
